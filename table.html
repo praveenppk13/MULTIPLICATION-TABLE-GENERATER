@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #cccfc8;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+       
+       
+        th, td {
+            border: 1px solid #ddd;
+            padding: 3px;
+            
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .clear-button {
+            background-color: #f44336;
+        }
+
+        .clear-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multiplication Table Generator</h1>
+        <label for="number">Enter a number: </label>
+        <input type="number" id="number" min="1">
+        <button onclick="generateTable()">Generate Table</button>
+         <table id="multiplicationTable"></table>
+        <button class="clear-button" onclick="clearbutton()">Clear</button>
+    </div>
+    <script>
+        function generateTable() {
+            const number = document.getElementById('number').value;
+            const table = document.getElementById('multiplicationTable');
+
+            // Clear previous table ,if u call the generateTable function again
+            table.innerHTML = '';
+
+            // Checks if the input is a valid number greater than or equal to 1
+            if (number < 1) {
+                alert('Please enter a number greater than or equal to 1');
+                return;
+            }
+
+            // Create table header
+            const headerRow = table.insertRow();
+            const cell1 = headerRow.insertCell();
+            cell1.innerHTML = 'Multiplication Table for ' + number;
+
+            // Create table rows for the multiplication table
+            for (let i = 1; i <= 20; i++) {
+                const row = table.insertRow();
+                const cell = row.insertCell();
+                cell.innerHTML = `${number} x ${i} = ${number * i}`;
+            }
+        }
+
+        
+        function clearbutton() {
+            const table = document.getElementById('multiplicationTable');
+            table.innerHTML = ''; // Clear previous table
+            document.getElementById('number').value = ''; // Clears the user input
+        };
+    </script>
+</body>
+</html>
